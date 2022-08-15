@@ -1,0 +1,48 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}Register Account{% endblock %}
+
+{% block content %} 
+
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger">
+            <strong>{{error}}</strong>
+        </div>
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+
+<div class="journal-header p-3 pb-md-4 mx-auto text-center justify-content-center">
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group mb-2">
+            <label for="first_name">First Name</label>
+            {{form.first_name}}
+        </div>
+        <div class="form-group mb-2">
+            <label for="last_name">Last Name</label>
+            {{form.last_name}}
+        </div>
+        <div class="form-group mb-2">
+            <label for="username">Username</label>
+            {{form.username}}
+        </div>
+        <div class="form-group mb-2">
+            <label for="email">Email</label>
+            {{form.email}}
+        </div>
+        <div class="form-group mb-2">
+            <label for="password1">Password</label>
+            {{form.password1}}
+        </div>
+        <div class="form-group mb-2">
+            <label for="password2">Confirm Password</label>
+            {{form.password2}}
+        </div>
+        <input class="w-30 btn btn-md mt-2 mb-4 fw-bold" type="submit" value="Register">
+    </form>
+</div>
+
+{% endblock %}

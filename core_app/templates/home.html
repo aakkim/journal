@@ -1,0 +1,26 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block title %}Online Journal{% endblock %}
+
+{% block content %} 
+
+<main>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center mx-5 px-5">
+        {% for journal in journals %}
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li class="h4">{{journal.title}}</li>
+                        <li>{{journal.created_date}}</li>
+                    </ul>
+                    <a class="w-40 btn btn-sm fw-bold" href="/read_entry/{{journal.id}}">Read Entry</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+
+
+{% endblock %}

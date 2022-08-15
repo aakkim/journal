@@ -1,0 +1,22 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}Create an Entry{% endblock %}
+
+{% block content %} 
+
+<div class="journal-header p-3 pb-md-4 mx-auto text-center justify-content-center">
+    <form action="{% url 'create_journal' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group mb-2">
+            <label class="mb-2 h5" for="title">Title</label><br>
+            <input class="mb-3" type="text" size="50" name="title">
+        </div>
+        <div class="form-group mb-2">
+            <label class="mb-2 h5" for="content">Content</label><br>
+            <textarea class="mb-3" name="content" id="content" cols="80" rows="10" style="resize:none;"></textarea>
+        </div>
+        <input class="w-30 btn btn-md mt-3 mb-4 fw-bold" type="submit" value="Create">
+    </form>
+</div>
+
+{% endblock %}

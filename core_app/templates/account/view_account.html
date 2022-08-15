@@ -1,0 +1,14 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}Register Account{% endblock %}
+
+{% block content %} 
+
+<div class="p-5 pb-md-4 mx-auto text-center">
+    <p>Name: {{ user.get_full_name }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Username: {{user.username }}</p>
+    <a class="w-30 btn btn-md fw-bold" href="{% url 'change_password' %}"><strong>Update Password</strong></a>
+</div>
+
+{% endblock %}

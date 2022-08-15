@@ -1,0 +1,32 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}Log In to Account{% endblock %}
+
+{% block content %} 
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags %}
+            <div class="alert alert-danger">
+                <strong>{{message}}</strong>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<div class="journal-header p-3 pb-md-4 mx-auto text-center">
+    <form action="{% url 'login_user' %}" method="post">
+        {% csrf_token %}
+        <div class="form-outline mb-2">
+            <label for="username">Username</label>
+            <input type="text" name="username">
+        </div>
+        <div class="form-outline mb-2">
+            <label for="password1">Password</label>
+            <input type="password" name="password">
+        </div>
+        <input class="w-30 btn btn-md mt-2 mb-4 fw-bold" type="submit" value="Log In">
+    </form>
+</div>
+
+{% endblock %}

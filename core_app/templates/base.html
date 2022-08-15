@@ -1,0 +1,50 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>{% block title %}Online Journal{% endblock %}</title>
+</head>
+<body>
+    <div class="container">
+        {% if user.is_authenticated %}
+        <header class="d-flex justify-content-center py-3">
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="{% url 'home' %}" class="nav-link px-2 link-dark">Home</a></li>
+                <li class="nav-item"><a href="{% url 'create_journal' %}" class="nav-link px-2 link-dark">Create an Entry</a></li>
+                <li class="nav-item"><a href="{% url 'view_account' %}" class="nav-link px-2 link-dark">View Account</a></li>
+                <li class="nav-item"><a href="{% url 'logout_user' %}" class="nav-link px-2 link-dark">Log Out</a></li>
+            </ul>
+        </header>
+        {% else %}
+        <header class="d-flex justify-content-center py-3">
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="{% url 'register' %}" class="nav-link px-2 link-dark">Register an Account</a></li>
+                <li class="nav-item"><a href="{% url 'login_user' %}" class="nav-link px-2 link-dark">Log in to Account</a></li>
+            </ul>
+        </header>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <div class="journal-header p-3 pb-md-4 mx-auto text-center">
+            <h2 class="display-5 fw-normal">Hi {{ user.get_short_name }}</h2>
+            <p class="fs-5 text-dark border-bottom pb-4">Welcome to your online journal</p>
+        </div>
+        {% else %}
+        <div class="journal-header p-3 pb-md-4 mx-auto text-center">
+            <h2 class="display-5 fw-normal">Online Journal</h2>
+            <img src="/media/pink.jpg" width="550" alt="journal-image">
+            <p class="fs-5 text-dark mt-3">An easy to use online journal to write in and view at your leisure</p>
+        </div>
+        {% endif %}
+    </div>
+
+<div id="content">{% block content %} {% endblock %}</div>
+
+</body>
+</html>

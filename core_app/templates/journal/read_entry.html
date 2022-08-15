@@ -1,0 +1,18 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}Register Account{% endblock %}
+
+{% block content %} 
+
+<div class="p-5 pb-md-4 mx-5 text-center">
+    <p class="h3">{{ entry.title }}</p>
+    <p>{{ entry.content | linebreaks }}</p>
+    <a class="w-30 btn btn-sm fw-bold" href="/update/{{entry.id}}">Update Entry</a>
+    <a class="w-30 btn btn-sm fw-bold" href="/delete_entry/{{entry.id}}">Delete Entry</a>
+</div>
+<div class="p-3 pb-md-4 mx-auto text-center justify-content-center">
+    <a class="w-30 btn btn-sm fw-bold" href="{% url 'home' %}">Go Back</a>
+</div>
+
+
+{% endblock %}

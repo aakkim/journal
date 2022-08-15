@@ -1,0 +1,8 @@
+body {
+    margin: 50px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+input {
+    border-color: gray;
+}
