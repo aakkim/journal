@@ -10,6 +10,7 @@ from django.contrib.auth import login, authenticate, logout
 def index(request):
     return render(request, 'base.html')
 
+# Display all journal entries from current user
 def home(request):
     this_user = User.objects.get(id=request.user.id)
     journals = Journal.objects.filter(user=this_user)
@@ -18,6 +19,7 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
+# Register user account
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
@@ -32,6 +34,7 @@ def register(request):
         form = UserRegistrationForm()
     return render(request, 'account/register.html', {'form': form})
 
+# Log in user
 def login_user(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -46,11 +49,12 @@ def login_user(request):
     else:
         return render(request, 'account/login.html')
 
+# Log out user
 def logout_user(request):
     logout(request)
-    # messages.success(request, 'Logged out successfully!')
     return redirect('index')
 
+# Create a journal entry
 def create_journal(request):
     this_user = User.objects.get(id=request.user.id)
     if request.method == 'POST':
@@ -58,6 +62,7 @@ def create_journal(request):
         return redirect('home')
     return render(request, 'journal/create_journal.html')
 
+# Open up journal entry page
 def read_entry(request, id):
     entry = Journal.objects.get(id=id)
     context = {
@@ -65,6 +70,7 @@ def read_entry(request, id):
     }
     return render(request, 'journal/read_entry.html', context)
 
+# Delete an entry
 def delete_entry(request, id):
     entry = Journal.objects.get(id=id)
     if request.method == 'POST':
@@ -75,12 +81,14 @@ def delete_entry(request, id):
     }
     return render(request, 'journal/delete_entry.html', context)
 
+# Update a journal entry 
 def update(request, id):
     context = {
         'entry': Journal.objects.get(id=id)
     }
     return render(request, 'journal/update_entry.html', context)
 
+# Submit the journal update
 def update_entry(request, id):
     if request.method == "POST":
         entry = Journal.objects.get(id=id)
@@ -89,9 +97,11 @@ def update_entry(request, id):
         entry.save()
         return redirect(f'/read_entry/{id}')
 
+# Display user info
 def view_account(request):
     return render(request, 'account/view_account.html')
 
+# Change password for user account
 def change_password(request):
     if request.method == "POST":
         form = PasswordChangeForm(request.user, request.POST)
@@ -105,6 +115,7 @@ def change_password(request):
         form = PasswordChangeForm(request.user)
     return render(request, 'account/change_password.html', {'form': form})
 
+# Submit password change
 def success(request):
     return render(request, 'account/success.html')
 
