@@ -1,6 +1,12 @@
 # Journal
 A simple online journal created using Python, Django, and HTML/CSS.
 
+
+
+https://user-images.githubusercontent.com/86211541/191295423-368ce79e-e61e-4c78-b26f-5f1ddbf8f2f5.mov
+
+
+
 ## Summary
 - CRUD application using Django.
   - Create, read, update, or delete your journal entries.
